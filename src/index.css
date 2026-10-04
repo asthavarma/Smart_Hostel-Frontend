@@ -4,32 +4,32 @@
 
 @layer base {
   :root {
-    /* Light & Bright White, Blue, Yellow, Green Palette */
-    --background: 210 100% 98%;      /* Light Crisp Sky Tint (#F0F9FF) */
-    --foreground: 222 47% 11%;       /* High Contrast Dark Slate Text (#0F172A) */
+    /* 100% Pure White Canvas Palette */
+    --background: 0 0% 100%;         /* Pure White #FFFFFF */
+    --foreground: 222 47% 11%;       /* High Contrast Text #0F172A */
 
-    --card: 0 0% 100%;              /* Pure White Cards (#FFFFFF) */
+    --card: 0 0% 100%;              /* Pure White Cards #FFFFFF */
     --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 217 91% 54%;          /* Main Accent: Vibrant Royal Blue (#2563EB) */
+    --primary: 217 91% 54%;          /* Main Accent: Royal Blue #2563EB */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 48 96% 53%;        /* Highlight Color: Sunny Bright Yellow (#FACC15) */
+    --secondary: 48 96% 53%;        /* Highlight Color: Sunny Yellow #FACC15 */
     --secondary-foreground: 222 47% 11%;
 
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 45%;
 
-    --accent: 48 100% 92%;           /* Highlight Badge: Soft Gold Yellow (#FEF08A) */
+    --accent: 48 100% 92%;           /* Highlight Badge: Soft Yellow #FEF08A */
     --accent-foreground: 38 92% 28%;
 
-    --success: 142 71% 45%;          /* Status Indicator: Fresh Emerald Green (#10B981) */
+    --success: 142 71% 45%;          /* Status: Fresh Green #10B981 */
     --success-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;    /* Alert Red (#EF4444) */
+    --destructive: 0 84.2% 60.2%;    /* Alert Red #EF4444 */
     --destructive-foreground: 0 0% 100%;
 
     --border: 214 32% 91%;
@@ -38,60 +38,26 @@
 
     --radius: 0.85rem;
   }
-
-  /* Dark mode preset override for high contrast light-first themes */
-  .dark {
-    --background: 217 33% 15%;
-    --foreground: 210 40% 98%;
-
-    --card: 217 33% 18%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 217 33% 18%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 48 96% 53%;
-    --secondary-foreground: 222 47% 11%;
-
-    --muted: 217 33% 22%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 48 96% 25%;
-    --accent-foreground: 48 96% 90%;
-
-    --border: 217 33% 25%;
-    --input: 217 33% 25%;
-    --ring: 217 91% 60%;
-  }
 }
 
 @layer base {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20;
-    background-image: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(37, 99, 235, 0.06), transparent);
+  html, body {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    @apply bg-white text-foreground antialiased selection:bg-primary/20;
   }
 }
 
-/* Glassmorphism Styles for Light & Bright Theme */
+/* Glassmorphism Styles for Pure White Theme */
 .glass {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(226, 232, 240, 0.8);
   box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.05);
-}
-
-.dark .glass {
-  background: rgba(30, 41, 59, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Custom Scrollbar */
@@ -100,7 +66,7 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;

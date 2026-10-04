@@ -59,23 +59,23 @@ const WardenDashboard: React.FC = () => {
   return (
     <div className="space-y-8 page-fade">
       {/* Overview header with image */}
-      <div className="relative overflow-hidden bg-slate-900 text-white p-8 rounded-2xl border border-border shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4 min-h-[140px]">
+      <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white p-8 rounded-2xl border border-blue-200 shadow-lg shadow-blue-500/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 min-h-[140px]">
         <img 
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&auto=format&fit=crop&q=80" 
           alt="Warden Control Desk" 
-          className="absolute inset-0 w-full h-full object-cover opacity-15"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/40 to-transparent" />
         
         <div className="relative z-10">
           <h1 className="text-2xl font-extrabold tracking-tight">Warden Control Desk</h1>
-          <p className="text-sm text-slate-300 mt-1 max-w-xl">Mark nightly attendance lists, log incoming/outgoing visitors, and inspect room maintenance requests.</p>
+          <p className="text-sm text-blue-100 mt-1 max-w-xl">Mark nightly attendance lists, log incoming/outgoing visitors, and inspect room maintenance requests.</p>
         </div>
         <div className="relative z-10 flex gap-3">
-          <NavLink to="/attendance" className="px-4 py-2.5 bg-primary text-primary-foreground font-semibold rounded-xl text-sm transition-all hover:bg-primary/95 shadow-md shadow-primary/10 flex items-center gap-2">
+          <NavLink to="/attendance" className="px-4 py-2.5 bg-yellow-400 text-slate-900 font-bold rounded-xl text-sm transition-all hover:bg-yellow-300 shadow-md shadow-yellow-500/20 flex items-center gap-2">
             <CalendarCheck className="w-4 h-4" /> Mark Attendance
           </NavLink>
-          <NavLink to="/visitors" className="px-4 py-2.5 bg-slate-800 text-white font-semibold rounded-xl text-sm transition-all hover:bg-slate-700 border border-slate-700 flex items-center gap-2">
+          <NavLink to="/visitors" className="px-4 py-2.5 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-xl text-sm transition-all border border-white/30 backdrop-blur-md flex items-center gap-2">
             <Users className="w-4 h-4" /> Gate Log
           </NavLink>
         </div>

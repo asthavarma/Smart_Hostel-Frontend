@@ -211,17 +211,17 @@ const StudentDashboard: React.FC = () => {
       )}
 
       {/* Banner Header */}
-      <div className="relative overflow-hidden bg-slate-900 text-white p-8 rounded-2xl border border-border shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4 min-h-[140px]">
+      <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white p-8 rounded-2xl border border-blue-200 shadow-lg shadow-blue-500/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 min-h-[140px]">
         <img 
           src="https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?w=1200&auto=format&fit=crop&q=80" 
           alt="Student Banner" 
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/40 to-transparent" />
         
         <div className="relative z-10">
           <h1 className="text-2xl font-extrabold tracking-tight">Welcome Back to Claria University Hostel</h1>
-          <p className="text-sm text-slate-300 mt-1">Roll Number: {profile.studentId} | Dept: {profile.department} (Semester {profile.semester})</p>
+          <p className="text-sm text-blue-100 mt-1">Roll Number: {profile.studentId} | Dept: {profile.department} (Semester {profile.semester})</p>
         </div>
 
         <div className="relative z-10 flex flex-wrap gap-2">
