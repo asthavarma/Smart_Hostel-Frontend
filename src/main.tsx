@@ -22,6 +22,13 @@ import AuditLogs from './pages/AuditLogs';
 
 import './index.css';
 
+// Ensure default theme is Light Mode unless user explicitly selected 'dark'
+if (localStorage.getItem('theme') === 'dark') {
+  document.documentElement.classList.add('dark');
+} else {
+  document.documentElement.classList.remove('dark');
+}
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
