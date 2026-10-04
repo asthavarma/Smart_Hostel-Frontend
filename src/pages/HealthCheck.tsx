@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Activity, CheckCircle2, XCircle, RefreshCw, Server, Laptop, ShieldCheck, ArrowLeft } from 'lucide-react';
-import api from '../services/api';
 
 interface BackendHealthData {
   status: string;
@@ -26,20 +25,23 @@ const HealthCheck: React.FC = () => {
     setBackendError(null);
     const start = performance.now();
     try {
-      let res;
-      try {
-        res = await api.get('/health');
-      } catch (firstErr) {
-        // Fallback directly to live Render backend URL if relative path or proxy failed
-        res = await axios.get('https://smart-hostel-backend-j4h1.onrender.com/api/health');
+      // Determine API health endpoint URL
+      let targetUrl = 'https://smart-hostel-backend-j4h1.onrender.com/api/health';
+      if (import.meta.env.VITE_API_URL) {
+        let envUrl = import.meta.env.VITE_API_URL.trim().replace(/\/+$/, '');
+        if (!envUrl.endsWith('/api')) envUrl = `${envUrl}/api`;
+        targetUrl = `${envUrl}/health`;
       }
+
+      // Perform clean unauthenticated GET request to health endpoint
+      const res = await axios.get(targetUrl, { timeout: 10000 });
       const end = performance.now();
       setLatency(Math.round(end - start));
       setBackendData(res.data);
     } catch (err: any) {
       const end = performance.now();
       setLatency(Math.round(end - start));
-      setBackendError(err.response?.data?.error || err.message || 'Unable to connect to backend service');
+      setBackendError(err.response?.data?.error || err.message || 'Network Error');
     } finally {
       setLoading(false);
     }
@@ -48,6 +50,8 @@ const HealthCheck: React.FC = () => {
   useEffect(() => {
     fetchHealthStatus();
   }, []);
+
+  const isHealthy = !loading && !backendError && (backendData?.status === 'healthy' || backendData?.services?.database === 'connected');
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-6 relative overflow-hidden">
@@ -117,7 +121,7 @@ const HealthCheck: React.FC = () => {
                 <Server className="w-4 h-4 text-primary" />
                 <span>Backend API & DB</span>
               </div>
-              {!loading && !backendError && backendData?.status === 'healthy' ? (
+              {isHealthy ? (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>HEALTHY</span>
