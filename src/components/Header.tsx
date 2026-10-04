@@ -17,7 +17,7 @@ interface Notification {
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    return localStorage.getItem('theme') !== 'light';
+    return localStorage.getItem('theme') === 'dark';
   });
   
   const [notifications, setNotifications] = useState<Notification[]>([]);

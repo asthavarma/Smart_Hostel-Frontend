@@ -25,7 +25,6 @@ const HealthCheck: React.FC = () => {
     setBackendError(null);
     const start = performance.now();
     try {
-      // Determine API health endpoint URL
       let targetUrl = 'https://smart-hostel-backend-j4hl.onrender.com/api/health';
       if (import.meta.env.VITE_API_URL) {
         let envUrl = import.meta.env.VITE_API_URL.trim().replace(/\/+$/, '');
@@ -33,7 +32,6 @@ const HealthCheck: React.FC = () => {
         targetUrl = `${envUrl}/health`;
       }
 
-      // Perform clean unauthenticated GET request to health endpoint
       const res = await axios.get(targetUrl, { timeout: 10000 });
       const end = performance.now();
       setLatency(Math.round(end - start));
@@ -54,28 +52,28 @@ const HealthCheck: React.FC = () => {
   const isHealthy = !loading && !backendError && (backendData?.status === 'healthy' || backendData?.services?.database === 'connected');
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-blue-50 text-slate-800 flex items-center justify-center p-6 relative overflow-hidden">
       {/* Background Glow Effect */}
-      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]" />
+      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-400/15 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-amber-300/20 rounded-full blur-[120px]" />
 
-      <div className="w-full max-w-2xl bg-slate-900/80 border border-slate-800 rounded-3xl p-8 backdrop-blur-xl shadow-2xl relative z-10 space-y-8 page-fade">
+      <div className="w-full max-w-2xl bg-white border border-sky-100 rounded-3xl p-8 shadow-2xl relative z-10 space-y-8 page-fade">
         
         {/* Top Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-6">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-6">
           <div className="flex items-center gap-3">
-            <div className="bg-primary/15 text-primary p-3 rounded-2xl border border-primary/20">
-              <Activity className="w-6 h-6 text-primary animate-pulse" />
+            <div className="bg-amber-400 text-slate-900 p-3 rounded-2xl shadow-md shadow-amber-400/30">
+              <Activity className="w-6 h-6 animate-pulse" />
             </div>
             <div>
-              <h1 className="text-xl font-extrabold tracking-tight text-white">System Health Telemetry</h1>
-              <p className="text-xs text-slate-400">Live operational status monitor for Frontend & Backend</p>
+              <h1 className="text-xl font-extrabold tracking-tight text-slate-900">System Health Telemetry</h1>
+              <p className="text-xs text-slate-500 font-medium">Live operational status monitor for Frontend & Backend</p>
             </div>
           </div>
           <button
             onClick={fetchHealthStatus}
             disabled={loading}
-            className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-xs font-semibold px-4 py-2.5 rounded-xl border border-slate-700 transition-all text-slate-200"
+            className="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2.5 rounded-xl border border-blue-200 transition-all"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -86,76 +84,76 @@ const HealthCheck: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {/* Frontend Service Card */}
-          <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <div className="bg-slate-50/80 border border-slate-200 rounded-2xl p-6 space-y-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-slate-300 font-bold text-sm">
-                <Laptop className="w-4 h-4 text-indigo-400" />
+              <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+                <Laptop className="w-4 h-4 text-blue-600" />
                 <span>Frontend Client</span>
               </div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <CheckCircle2 className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 <span>HEALTHY</span>
               </span>
             </div>
             
-            <div className="space-y-2 text-xs text-slate-400 border-t border-slate-850 pt-4">
+            <div className="space-y-2 text-xs text-slate-600 border-t border-slate-200 pt-4">
               <div className="flex justify-between">
                 <span>Framework:</span>
-                <span className="font-semibold text-slate-200">Vite + React (TypeScript)</span>
+                <span className="font-semibold text-slate-900">Vite + React (TypeScript)</span>
               </div>
               <div className="flex justify-between">
                 <span>Client Status:</span>
-                <span className="font-semibold text-emerald-400">ONLINE (200 OK)</span>
+                <span className="font-bold text-emerald-600">ONLINE (200 OK)</span>
               </div>
               <div className="flex justify-between">
                 <span>Build Environment:</span>
-                <span className="font-semibold text-slate-200">{import.meta.env.MODE || 'production'}</span>
+                <span className="font-semibold text-slate-900">{import.meta.env.MODE || 'production'}</span>
               </div>
             </div>
           </div>
 
           {/* Backend API Service Card */}
-          <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <div className="bg-slate-50/80 border border-slate-200 rounded-2xl p-6 space-y-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-slate-300 font-bold text-sm">
-                <Server className="w-4 h-4 text-primary" />
+              <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+                <Server className="w-4 h-4 text-blue-600" />
                 <span>Backend API & DB</span>
               </div>
               {isHealthy ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                   <span>HEALTHY</span>
                 </span>
               ) : !loading && backendError ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/20">
-                  <XCircle className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border border-red-300">
+                  <XCircle className="w-3.5 h-3.5 text-red-600" />
                   <span>UNHEALTHY</span>
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-slate-400">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-200 text-slate-700">
                   <span>CHECKING...</span>
                 </span>
               )}
             </div>
 
-            <div className="space-y-2 text-xs text-slate-400 border-t border-slate-850 pt-4">
+            <div className="space-y-2 text-xs text-slate-600 border-t border-slate-200 pt-4">
               <div className="flex justify-between">
                 <span>API Endpoint:</span>
-                <span className="font-semibold text-slate-200">/api/health</span>
+                <span className="font-semibold text-slate-900">/api/health</span>
               </div>
               <div className="flex justify-between">
                 <span>Database Connection:</span>
-                <span className={`font-semibold ${backendData?.services?.database === 'connected' ? 'text-emerald-400' : 'text-amber-400'}`}>
+                <span className={`font-bold ${backendData?.services?.database === 'connected' ? 'text-emerald-600' : 'text-amber-600'}`}>
                   {backendData?.services?.database || (backendError ? 'DISCONNECTED' : '...')}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Network Latency:</span>
-                <span className="font-semibold text-slate-200">{latency !== null ? `${latency} ms` : '...'}</span>
+                <span className="font-semibold text-slate-900">{latency !== null ? `${latency} ms` : '...'}</span>
               </div>
               <div className="flex justify-between">
                 <span>Server Uptime:</span>
-                <span className="font-semibold text-slate-200">{backendData?.uptime || '...'}</span>
+                <span className="font-semibold text-slate-900">{backendData?.uptime || '...'}</span>
               </div>
             </div>
           </div>
@@ -163,23 +161,23 @@ const HealthCheck: React.FC = () => {
         </div>
 
         {/* Detailed Response Payload Box */}
-        <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-2">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-semibold text-slate-300">Live JSON Payload Response</span>
-            <span>Timestamp: {backendData?.timestamp || new Date().toISOString()}</span>
+        <div className="bg-amber-50/60 border border-amber-200 rounded-2xl p-5 space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-600">
+            <span className="font-bold text-amber-900">Live JSON Payload Response</span>
+            <span className="font-mono">Timestamp: {backendData?.timestamp || new Date().toISOString()}</span>
           </div>
-          <pre className="text-xs font-mono bg-slate-900/80 text-slate-300 p-4 rounded-xl overflow-x-auto border border-slate-800/80">
+          <pre className="text-xs font-mono bg-white text-slate-900 p-4 rounded-xl overflow-x-auto border border-amber-200 shadow-inner">
             {JSON.stringify(backendData || { error: backendError || 'Fetching telemetry...' }, null, 2)}
           </pre>
         </div>
 
         {/* Bottom Actions */}
-        <div className="flex justify-between items-center border-t border-slate-800 pt-6">
-          <Link to="/login" className="text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors">
+        <div className="flex justify-between items-center border-t border-slate-100 pt-6">
+          <Link to="/login" className="text-xs font-bold text-slate-500 hover:text-blue-600 flex items-center gap-1.5 transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" /> Return to Login
           </Link>
           <div className="flex items-center gap-2 text-xs text-slate-500">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <ShieldCheck className="w-4 h-4 text-emerald-600" />
             <span>Claria Hostel Automated Health Monitor</span>
           </div>
         </div>

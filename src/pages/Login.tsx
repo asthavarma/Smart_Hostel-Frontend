@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
-import { Flame, Lock, Mail, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Flame, Lock, Mail, Eye, EyeOff, Loader2, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -31,96 +31,105 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-blue-50 text-slate-800 flex items-center justify-center p-6 relative overflow-hidden">
+      
+      {/* Decorative Bright Background Blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-400/15 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-amber-300/20 rounded-full blur-[120px]" />
 
-      {/* Left Panel - Hostel Image */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200&auto=format&fit=crop&q=80"
-          alt="Claria University Hostel"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/85 via-slate-900/60 to-indigo-950/70" />
-        {/* Text over image */}
-        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          <div className="flex items-center gap-3">
-            <div className="bg-white/10 backdrop-blur p-2 rounded-xl border border-white/10">
-              <Flame className="w-6 h-6 text-indigo-400" />
+      <div className="w-full max-w-5xl bg-white border border-sky-100 rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row relative z-10 page-fade">
+
+        {/* Left Hero Panel - Bright Blue & Yellow Accents */}
+        <div className="lg:w-1/2 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 p-10 text-white flex flex-col justify-between relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/20 rounded-full blur-3xl" />
+
+          {/* Brand Header */}
+          <div className="flex items-center gap-3 relative z-10">
+            <div className="bg-amber-400 text-slate-900 p-2.5 rounded-2xl shadow-lg shadow-amber-400/30">
+              <Flame className="w-6 h-6 fill-slate-900 text-slate-900" />
             </div>
-            <span className="text-white font-extrabold text-xl tracking-tight">CLARIA UNIVERSITY HOSTEL</span>
+            <span className="font-extrabold text-xl tracking-tight text-white">CLARIA HOSTEL OS</span>
           </div>
-          <div>
-            <h2 className="text-4xl font-extrabold text-white leading-tight mb-4">
-              Smart Living,<br />Smarter Management.
+
+          {/* Middle Copy */}
+          <div className="my-10 relative z-10 space-y-4">
+            <div className="inline-flex items-center gap-2 bg-amber-300/20 border border-amber-300/30 text-amber-200 text-xs font-bold px-3 py-1.5 rounded-full">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Smart Hostel Management Platform</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-extrabold text-white leading-tight">
+              Bright, Efficient & Intelligent Living.
             </h2>
-            <p className="text-slate-300 text-sm leading-relaxed max-w-sm">
-              AI-powered hostel platform managing rooms, fees, complaints, visitor passes and attendance - all in one place.
+            <p className="text-blue-100 text-sm leading-relaxed max-w-sm">
+              Real-time room allocation, automated billing receipts, curfew gate checks, and AI occupancy trends.
             </p>
-            <div className="mt-8 flex gap-6">
-              <div>
-                <p className="text-2xl font-extrabold text-white">500+</p>
-                <p className="text-xs text-slate-400 mt-0.5">Students Managed</p>
+
+            {/* Metrics Pill Grid */}
+            <div className="grid grid-cols-3 gap-3 pt-6">
+              <div className="bg-white/10 backdrop-blur border border-white/15 p-3 rounded-2xl">
+                <p className="text-xl font-extrabold text-amber-300">500+</p>
+                <p className="text-[11px] text-blue-100 mt-0.5">Students</p>
               </div>
-              <div className="w-px bg-white/10" />
-              <div>
-                <p className="text-2xl font-extrabold text-white">50+</p>
-                <p className="text-xs text-slate-400 mt-0.5">Rooms Allocated</p>
+              <div className="bg-white/10 backdrop-blur border border-white/15 p-3 rounded-2xl">
+                <p className="text-xl font-extrabold text-emerald-300">99.9%</p>
+                <p className="text-[11px] text-blue-100 mt-0.5">Uptime</p>
               </div>
-              <div className="w-px bg-white/10" />
-              <div>
-                <p className="text-2xl font-extrabold text-white">99%</p>
-                <p className="text-xs text-slate-400 mt-0.5">Uptime</p>
+              <div className="bg-white/10 backdrop-blur border border-white/15 p-3 rounded-2xl">
+                <p className="text-xl font-extrabold text-white">100%</p>
+                <p className="text-[11px] text-blue-100 mt-0.5">Digital</p>
               </div>
             </div>
+          </div>
+
+          {/* Footer badge */}
+          <div className="flex items-center gap-2 text-xs text-blue-200 relative z-10">
+            <ShieldCheck className="w-4 h-4 text-emerald-300" />
+            <span>Encrypted Institutional Authentication</span>
           </div>
         </div>
-      </div>
 
-      {/* Right Panel - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center relative overflow-hidden px-6 py-12">
-        <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] bg-indigo-500/8 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] bg-primary/8 rounded-full blur-[100px]" />
-
-        <div className="w-full max-w-md bg-slate-900/60 border border-slate-800 rounded-3xl p-8 backdrop-blur-xl shadow-2xl relative z-10 page-fade">
-          <div className="flex flex-col items-center mb-8">
-            <div className="bg-primary/15 text-primary p-3 rounded-2xl mb-4 border border-primary/20">
-              <Flame className="w-8 h-8 animate-pulse text-primary" />
+        {/* Right Panel - Clean White & Blue Form */}
+        <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-white">
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full mb-3 border border-amber-200">
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+              <span>Light & Bright Portal</span>
             </div>
-            <h1 className="text-2xl font-extrabold tracking-tight text-white">Welcome Back</h1>
-            <p className="text-sm text-slate-400 mt-1">Claria University Hostel Management Platform</p>
+            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Sign In to Dashboard</h1>
+            <p className="text-sm text-slate-500 mt-1">Enter your institution email address and password</p>
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/30 text-red-200 text-xs py-3 px-4 rounded-xl mb-6 font-semibold">
-              {error}
+            <div className="bg-red-50 border border-red-200 text-red-700 text-xs py-3 px-4 rounded-2xl mb-6 font-semibold flex items-center gap-2">
+              <span>⚠️</span>
+              <span>{error}</span>
             </div>
           )}
 
           <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-400" htmlFor="email">Email Address</label>
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider" htmlFor="email">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-4 top-3.5 w-5 h-5 text-slate-500" />
+                <Mail className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
                 <input
                   id="email"
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@university.edu"
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  placeholder="admin@aegis.com"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3 pl-12 pr-4 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-100 transition-all font-medium"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
               <div className="flex justify-between items-center">
-                <label className="text-xs font-semibold text-slate-400" htmlFor="password">Password</label>
-                <Link to="/forgot-password" className="text-xs font-semibold text-primary hover:underline">Forgot password?</Link>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider" htmlFor="password">Password</label>
+                <Link to="/forgot-password" className="text-xs font-bold text-blue-600 hover:text-blue-700 hover:underline">Forgot password?</Link>
               </div>
               <div className="relative">
-                <Lock className="absolute left-4 top-3.5 w-5 h-5 text-slate-500" />
+                <Lock className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
@@ -128,12 +137,12 @@ const Login: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-12 pr-12 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3 pl-12 pr-12 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-100 transition-all font-medium"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-3.5 text-slate-500 hover:text-white"
+                  className="absolute right-4 top-3.5 text-slate-400 hover:text-slate-700"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -143,23 +152,32 @@ const Login: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3.5 rounded-2xl text-sm transition-all duration-200 shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 hover:shadow-blue-500/40 active:scale-[0.99]"
             >
               {loading ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Verifying Account...</span>
+                  <Loader2 className="w-4 h-4 animate-spin text-white" />
+                  <span>Signing In...</span>
                 </>
               ) : (
-                <span>Sign In</span>
+                <span>Sign In to Portal</span>
               )}
             </button>
           </form>
 
+          {/* Quick Demo Credentials Help */}
+          <div className="mt-8 pt-6 border-t border-slate-100">
+            <p className="text-xs font-bold text-slate-500 mb-2">Default Quick Credentials:</p>
+            <div className="flex flex-wrap gap-2 text-[11px]">
+              <span className="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-lg font-bold border border-blue-100">Admin: admin@aegis.com</span>
+              <span className="bg-amber-50 text-amber-800 px-2.5 py-1 rounded-lg font-bold border border-amber-200">Student: student1@university.edu</span>
+              <span className="bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-lg font-bold border border-emerald-200">Password: password123</span>
+            </div>
+          </div>
 
         </div>
-      </div>
 
+      </div>
     </div>
   );
 };
