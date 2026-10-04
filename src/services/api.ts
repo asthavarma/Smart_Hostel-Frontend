@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Smart URL resolution: Ensure /api suffix is present regardless of how VITE_API_URL is configured
-let rawUrl = import.meta.env.VITE_API_URL || 'https://smart-hostel-backend-j4h1.onrender.com/api';
+// Smart URL resolution: Ensure /api suffix is present and correctly targets Render backend URL
+let rawUrl = import.meta.env.VITE_API_URL || 'https://smart-hostel-backend-j4hl.onrender.com/api';
 rawUrl = rawUrl.trim().replace(/\/+$/, '');
 if (!rawUrl.endsWith('/api')) {
   rawUrl = `${rawUrl}/api`;

@@ -26,7 +26,7 @@ const HealthCheck: React.FC = () => {
     const start = performance.now();
     try {
       // Determine API health endpoint URL
-      let targetUrl = 'https://smart-hostel-backend-j4h1.onrender.com/api/health';
+      let targetUrl = 'https://smart-hostel-backend-j4hl.onrender.com/api/health';
       if (import.meta.env.VITE_API_URL) {
         let envUrl = import.meta.env.VITE_API_URL.trim().replace(/\/+$/, '');
         if (!envUrl.endsWith('/api')) envUrl = `${envUrl}/api`;
