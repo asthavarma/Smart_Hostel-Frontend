@@ -38,6 +38,36 @@
 
     --radius: 0.85rem;
   }
+
+  .dark {
+    --background: 222 47% 8%;       /* Dark Navy #090D16 */
+    --foreground: 210 40% 98%;      /* Off White #F8FAFC */
+
+    --card: 222 47% 12%;            /* Dark Navy Card #111827 */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;         /* Bright Blue Accent */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 20%;       /* Dark Surface Muted */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 48 90% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 217 33% 22%;
+    --input: 217 33% 22%;
+    --ring: 217 91% 60%;
+  }
 }
 
 @layer base {
@@ -45,9 +75,13 @@
     @apply border-border;
   }
   html, body {
-    background-color: #ffffff !important;
-    background-image: none !important;
-    @apply bg-white text-foreground antialiased selection:bg-primary/20;
+    background-color: #ffffff;
+    color: #0f172a;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 transition-colors duration-200;
+  }
+  html.dark, body.dark {
+    background-color: #090d16 !important;
+    color: #f8fafc !important;
   }
 }
 
