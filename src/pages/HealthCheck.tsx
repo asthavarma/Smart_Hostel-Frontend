@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { Activity, CheckCircle2, XCircle, RefreshCw, Server, Laptop, ShieldCheck, ArrowLeft } from 'lucide-react';
 import api from '../services/api';
 
@@ -25,7 +26,13 @@ const HealthCheck: React.FC = () => {
     setBackendError(null);
     const start = performance.now();
     try {
-      const res = await api.get('/health');
+      let res;
+      try {
+        res = await api.get('/health');
+      } catch (firstErr) {
+        // Fallback directly to live Render backend URL if relative path or proxy failed
+        res = await axios.get('https://smart-hostel-backend-j4h1.onrender.com/api/health');
+      }
       const end = performance.now();
       setLatency(Math.round(end - start));
       setBackendData(res.data);
