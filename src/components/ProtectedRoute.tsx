@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 interface ProtectedRouteProps {
   allowedRoles?: Array<'SUPER_ADMIN' | 'HOSTEL_MANAGER' | 'WARDEN' | 'STUDENT'>;
 }
-
+// dfghjkrfgbnfvbnm
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) => {
   const token = localStorage.getItem('accessToken') || localStorage.getItem('token');
   const userJson = localStorage.getItem('user');
